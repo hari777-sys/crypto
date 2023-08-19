@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class stringtohex {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter a String value: ");
+        System.out.print("Enter a String value: ");
         String str = sc.next();
         StringBuffer sb = new StringBuffer();
         //Converting string to character array
