@@ -1,47 +1,45 @@
-import java.math.*;
-import java.util.*;
 public class rsa {
-        public static void main(String args[])
+        public static double gcd(double a, double h)
         {
-            int p, q, n, z, d = 0, e, i;
-            int msg = 12;
-            double c;
-            BigInteger msgback;
-            p = 3;
-            q = 11;
-            n = p * q;
-            z = (p - 1) * (q - 1);
-            System.out.println("the value of z = " + z);
-
-            for (e = 2; e < z; e++) {
-
-                if (gcd(e, z) == 1) {
-                    break;
-                }
+            double temp;
+            while (true) {
+                temp = a % h;
+                if (temp == 0)
+                    return h;
+                a = h;
+                h = temp;
             }
-            System.out.println("the value of e = " + e);
-            for (i = 0; i <= 9; i++) {
-                int x = 1 + (i * z);
-                if (x % e == 0) {
-                    d = x / e;
-                    break;
-                }
-            }
-            System.out.println("the value of d = " + d);
-            c = (Math.pow(msg, e)) % n;
-            System.out.println("Encrypted message is : " + c);
-            BigInteger N = BigInteger.valueOf(n);
-            BigInteger C = BigDecimal.valueOf(c).toBigInteger();
-            msgback = (C.pow(d)).mod(N);
-            System.out.println("Decrypted message is : " + msgback);
         }
-
-        static int gcd(int e, int z)
+        public static void main(String[] args)
         {
-            if (e == 0)
-                return z;
-            else
-                return gcd(z % e, e);
+            double p = 3;
+            double q = 7;
+
+            double n = p * q;
+
+            double e = 2;
+            double sigma_n = (p - 1) * (q - 1);
+            while (e < sigma_n) {
+                if (gcd(e, sigma_n) == 1)
+                    break;
+                else
+                    e++;
+            }
+            int k = 2;
+            double d = (1 + (k * sigma_n)) / e;
+
+
+            double msg = 12;
+
+            System.out.println("Message data = " + msg);
+
+            double c = Math.pow(msg, e);
+            c = c % n;
+            System.out.println("Encrypted data = " + c);
+
+            double m = Math.pow(c, d);
+            m = m % n;
+            System.out.println("Original Message Sent = " + m);
         }
     }
 
