@@ -3,19 +3,22 @@ import java.util.Scanner;
 public class LinearEqn {
     public static void main(String[]args){
         Scanner sc=new Scanner(System.in);
-        System.out.println("enter the value for x:");
+        System.out.print("enter the value for x:");
         int x = sc.nextInt();
-        System.out.println("enter the value for m:");
+        System.out.print("enter the value for m:");
         int m = sc.nextInt();
-        System.out.println("enter the value for a:");
+        System.out.print("enter the value for a:");
         int a = sc.nextInt();
-        System.out.println("enter the value for c:");
+        System.out.print("enter the value for c:");
         int c = sc.nextInt();
-
-        for(int i=0; i<=7;i++){
-            System.out.println(x);
+        if(m>0&& a<m && c<m){
+        for(int i=0; i<10;i++){
+            System.out.print(x+" ");
             int n=((a*x)+c)%m;
             x=n;
+        }}
+        else{
+            System.out.println("incorrect value");
         }
     }
 }

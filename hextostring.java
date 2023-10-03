@@ -2,7 +2,7 @@ import java.util.*;
 public class hextostring {
 public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter a Hexadecimal value: ");
+        System.out.print("Enter a Hexadecimal value: ");
         String str = sc.next();
         String result = new String();
         char[] charArray = str.toCharArray();

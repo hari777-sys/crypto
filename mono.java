@@ -46,6 +46,7 @@ public class mono {
         }
         public static void main(String args[]) {
             Scanner sc=new Scanner(System.in);
+            System.out.print("enter value:");
             String str=sc.nextLine();
             System.out.println("Plain text: " + str);
             String encryptedString = stringEncryption(str.toLowerCase());
