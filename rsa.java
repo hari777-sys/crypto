@@ -1,59 +1,42 @@
+import java.io.*;
 import java.math.*;
 import java.util.*;
-
-class rsa {
-    public static void main(String args[])
+public class rsa{
+    public static double gcd(double a, double h)
     {
-        int p, q, n, z, d = 0, e, i;
-
-        // The number to be encrypted and decrypted
-        int msg = 31;
-        double c;
-        BigInteger msgback;
-
-        // 1st prime number p
-        p = 3;
-
-        // 2nd prime number q
-        q = 11;
-        n = p * q;
-        z = (p - 1) * (q - 1);
-        System.out.println("the value of z = " + z);
-
-        for (e = 2; e < z; e++) {
-
-            // e is for public key exponent
-            if (gcd(e, z) == 1) {
-                break;
-            }
+        double temp;
+        while (true) {
+            temp = a % h;
+            if (temp == 0)
+                return h;
+            a = h;
+            h = temp;
         }
-        System.out.println("the value of e = " + e);
-        for (i = 0; i <= 9; i++) {
-            int x = 1 + (i * z);
-
-            // d is for private key exponent
-            if (x % e == 0) {
-                d = x / e;
-                break;
-            }
-        }
-        System.out.println("the value of d = " + d);
-        c = (Math.pow(msg, e)) % n;
-        System.out.println("Encrypted message is : " + c);
-
-        // converting int value of n to BigInteger
-        BigInteger N = BigInteger.valueOf(n);
-
-        // converting float value of c to BigInteger
-        BigInteger C = BigDecimal.valueOf(c).toBigInteger();
-        msgback = (C.pow(d)).mod(N);
-        System.out.println("Decrypted message is : " + msgback);
     }
-
-    static int gcd(int e, int z)
+    public static void main(String[] args)
     {
-        if (e == 0)
-            return z;
-        else
-            return gcd(z % e, e);
-    }}
+        double p = 3;
+        double q = 7;
+        double n = p * q;
+        double e = 2;
+        double phi = (p - 1) * (q - 1);
+        while (e < phi) {
+            if (gcd(e, phi) == 1)
+                break;
+            else
+                e++;
+        }
+        int k = 2;
+        double d = (1 + (k * phi)) / e;
+        double msg = 12;
+        System.out.println("Message data = " +
+                msg);
+        double c = Math.pow(msg, e);
+        c = c % n;
+        System.out.println("Encrypted data = "
+                + c);
+        double m = Math.pow(c, d);
+        m = m % n;
+        System.out.println("Original = " + m);
+    }
+}
