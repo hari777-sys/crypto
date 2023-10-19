@@ -4,12 +4,14 @@ public class stringtohex {
         public static void main(String ar[])
         {
             String input = "gg";
-            String hex = "";
-            for (int i=0;i<input.length();i++) {
-                hex=hex+(Integer.toHexString(input.charAt(i)));
+            StringBuilder hexstring = new StringBuilder();
+            for (char c:input.toCharArray()) {
+                hexstring.append(Integer.toHexString((int)c));
             }
-            System.out.println(hex);
+            System.out.println("res"+hexstring.toString());
+            }
+
         }
-    }
+
 
 

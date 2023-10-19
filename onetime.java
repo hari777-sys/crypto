@@ -1,61 +1,24 @@
-import java.io.*;
-public class onetime {
-        public static String stringEncryption(String text,String key) {
-
-            String cipherText = "";
-            int cipher[] = new int[key.length()];
-
-            for (int i = 0; i < key.length(); i++) {
-                cipher[i] = text.charAt(i) - 'A' + key.charAt(i) - 'A';
-            }
-            for (int i = 0; i < key.length(); i++) {
-                if (cipher[i] > 25) {
-                    cipher[i] = cipher[i] - 26;
+import java.util.*;
+public class onetime{
+    public static void main(String[] ss) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter plaintext:");
+        String pt=sc.nextLine();
+        System.out.println("Enter key:");
+        String key=sc.nextLine();
+        pt=pt.toLowerCase();
+        key=key.toLowerCase();
+        if(pt.length()==key.length()) {
+            for(int i=0;i<pt.length();i++) {
+                int r=pt.charAt(i);
+                int r1=key.charAt(i);
+                int res=(r+r1)-97;
+                if(res>122) {
+                    res=res-26;
                 }
+                char ch=(char)(res);
+                System.out.println("Result:"+ch);
             }
-
-            for (int i = 0; i < key.length(); i++) {
-                int x = cipher[i] + 'A';
-                cipherText += (char)x;
-            }
-            return cipherText;
-        }
-
-        public static String stringDecryption(String s, String key)
-        {
-
-            String plainText = "";
-            int plain[] = new int[key.length()];
-
-            for (int i = 0; i < key.length(); i++) {
-                plain[i] = s.charAt(i) - 'A' - (key.charAt(i) - 'A');
-            }
-
-            for (int i = 0; i < key.length(); i++) {
-                if (plain[i] < 0) {
-                    plain[i] = plain[i] + 26;
-                }
-            }
-
-            for (int i = 0; i < key.length(); i++) {
-                int x = plain[i] + 'A';
-                plainText += (char)x;
-            }
-
-            return plainText;
-        }
-
-        public static void main(String[] args)
-        {
-            String plainText = "Hello";
-
-            String key = "MONEY";
-            String encryptedText = stringEncryption(plainText.toUpperCase(), key.toUpperCase());
-
-            System.out.println("Cipher Text - " + encryptedText);
-
-            System.out.println("Message - " + stringDecryption(encryptedText, key.toUpperCase()));
         }
     }
-
-
+}

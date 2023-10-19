@@ -1,21 +1,27 @@
-import java.util.Scanner;
-
-public class blumshub {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("enter the value for x:");
-        double x = sc.nextInt();
-        System.out.print("enter the value for p:");
-        int p = sc.nextInt();
-        System.out.print("enter the value for q:");
-        int q = sc.nextInt();
-        if ((p % 4 == 3) && (q % 4 == 3)) {
-            int m = p * q;
-            double arr[]=new double[15];
-            for (int i = 0; i <= 7; i++) {
-                System.out.println(x);
-                arr[i]= (Math.pow(x, 2)) % m;
-                x=arr[i];
+import java.util.*;
+public class  blumshub{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int x=sc.nextInt();
+        int p=sc.nextInt();
+        int q=sc.nextInt();
+        int pc=0,qc=0;
+        for(int i=2;i<=p||i<=q;i++){
+            if((p%i)==0) {
+                pc++;
+            }
+            if((q%i)==0){
+                qc++;
+            }
+        }
+        if(pc<=1&&qc<=1){
+            if((p%4)==3 && (q%4)==3){
+                for(int i=0;i<10;i++){
+                    int m=p*q;
+                    int k=(x*x)%m;
+                    System.out.println(k);
+                    x=k;
+                }
             }
         }
     }
